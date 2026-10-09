@@ -1,0 +1,24 @@
+# 一键部署：docker compose up -d  →  http://localhost:8787
+# 不创建 .env 也能运行（离线回放模式）；需要实时数据时复制 .env.example 为 .env 并填写 AK
+services:
+  life-circle:
+    build: .
+    image: life-circle-checkup:latest
+    container_name: life-circle-checkup
+    ports:
+      - '${PORT:-8787}:8787'
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PORT: 8787
+    volumes:
+      - lc-cache:/app/data/cache
+      - lc-analyses:/app/data/analyses
+      - lc-visitors:/app/data/visitors
+    restart: unless-stopped
+
+volumes:
+  lc-cache:
+  lc-analyses:
+  lc-visitors:

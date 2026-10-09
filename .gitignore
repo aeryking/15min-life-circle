@@ -1,0 +1,22 @@
+# 依赖与构建产物
+node_modules/
+web/dist/
+
+# 环境变量与密钥（切勿提交）
+.env
+.env.*
+!.env.example
+
+# 运行时数据：API 磁盘缓存、体检记录与访客数据（回放库 data/replay 与验证结果需提交）
+data/cache/
+data/analyses/
+data/visitors/
+
+# 系统与编辑器
+.DS_Store
+*.log
+.idea/
+.vscode/
+
+# 赛题原文（主办方材料，不随开源仓库发布）
+docs/赛题.pdf

@@ -1,0 +1,559 @@
+:root {
+  color-scheme: light;
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --surface-2: #f7f8fb;
+  --surface-3: #eef1f6;
+  --border: #e3e7ee;
+  --border-strong: #cfd6e2;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #8391a7;
+  --brand: #1c5cab;
+  --brand-strong: #184f95;
+  --brand-soft: #e8f0fb;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --good: #0ca30c;
+  --good-text: #006300;
+  --warning: #fab219;
+  --serious: #ec835a;
+  --critical: #d03b3b;
+  --blind: #5b6472;
+  --good-soft: #e7f6e7;
+  --warn-soft: #fff4dc;
+  --warn-text: #8a5a00;
+  --warn-border: #f7e0a6;
+  --bad-soft: #fdeaea;
+  --bad-text: #a12828;
+  --map-bg: #e8ecf2;
+  --on-brand: #ffffff;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 1px 2px rgb(15 23 42 / 6%), 0 4px 16px rgb(15 23 42 / 6%);
+  --shadow-lg: 0 8px 32px rgb(15 23 42 / 14%);
+  --font: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+  --mono: 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--brand);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.secondary {
+  color: var(--text-secondary);
+}
+
+/* —— 通用组件 —— */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  cursor: pointer;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.btn:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--on-brand);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--brand-strong);
+  color: var(--on-brand);
+}
+
+.btn.ghost {
+  border-color: transparent;
+  background: transparent;
+}
+
+.btn.ghost:hover {
+  background: var(--surface-3);
+  color: var(--text-primary);
+}
+
+.btn.sm {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 13px;
+}
+
+.btn.lg {
+  height: 44px;
+  font-size: 16px;
+  padding: 0 20px;
+}
+
+.input {
+  width: 100%;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px var(--brand-soft);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--surface-3);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.chip.brand {
+  background: var(--brand-soft);
+  color: var(--brand-strong);
+}
+
+.chip.good {
+  background: var(--good-soft);
+  color: var(--good-text);
+}
+
+.chip.warn {
+  background: var(--warn-soft);
+  color: var(--warn-text);
+}
+
+.chip.bad {
+  background: var(--bad-soft);
+  color: var(--bad-text);
+}
+
+.seg {
+  display: flex;
+  background: var(--surface-3);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+
+.seg button {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.seg button.on {
+  background: var(--surface);
+  color: var(--text-primary);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 12%);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 8px;
+  letter-spacing: 0.02em;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.kpi {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.kpi .label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.kpi .value {
+  font-size: 20px;
+  font-weight: 650;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi .value small {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-left: 2px;
+}
+
+.kpi .hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+table.data th,
+table.data td {
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+table.data th {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 12px;
+  background: var(--surface-2);
+}
+
+table.data td.r,
+table.data th.r {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.scroll {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.status-icon {
+  font-weight: 700;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* 百度地图信息窗样式微调 */
+.info-card {
+  font-size: 13px;
+  line-height: 1.6;
+  min-width: 200px;
+}
+
+.info-card b {
+  font-size: 14px;
+}
+
+/* 地图信息窗（百度 / Leaflet 均为白底）在两种主题下都使用深色文字 */
+.info-card {
+  color: #0f172a;
+}
+
+.info-card .row {
+  color: #475569;
+}
+
+/* —— 暗黑模式：独立选定的深色表面与文本色（不是简单反色） —— */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #0e131b;
+  --surface: #161c26;
+  --surface-2: #1b2230;
+  --surface-3: #242c3b;
+  --border: #283142;
+  --border-strong: #39445a;
+  --text-primary: #e8edf5;
+  --text-secondary: #aab4c3;
+  --text-muted: #7c889b;
+  --brand: #3987e5;
+  --brand-strong: #5598e7;
+  --brand-soft: rgb(57 135 229 / 18%);
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --good-text: #5fd35f;
+  --blind: #a3adbd;
+  --good-soft: rgb(12 163 12 / 18%);
+  --warn-soft: rgb(250 178 25 / 14%);
+  --warn-text: #f5c25a;
+  --warn-border: rgb(250 178 25 / 30%);
+  --bad-soft: rgb(208 59 59 / 20%);
+  --bad-text: #ff8f8f;
+  --map-bg: #111722;
+  --on-brand: #ffffff;
+  --shadow: 0 1px 2px rgb(0 0 0 / 30%), 0 4px 16px rgb(0 0 0 / 30%);
+  --shadow-lg: 0 8px 32px rgb(0 0 0 / 45%);
+}
+
+/* 报告「纸张」在暗黑模式下仍保持浅色，所见即所打印 */
+:root[data-theme='dark'] .force-light {
+  color-scheme: light;
+  --surface: #ffffff;
+  --surface-2: #f7f8fb;
+  --surface-3: #eef1f6;
+  --border: #e3e7ee;
+  --border-strong: #cfd6e2;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #8391a7;
+  --brand: #1c5cab;
+  --brand-strong: #184f95;
+  --series-1: #2a78d6;
+  color: var(--text-primary);
+}
+
+/* 开源底图（Leaflet 栅格瓦片）暗化：只作用于瓦片层，覆盖物颜色不受影响 */
+:root[data-theme='dark'] .leaflet-tile-pane {
+  filter: invert(0.92) hue-rotate(180deg) brightness(0.9) contrast(0.92) saturate(0.6);
+}
+
+:root[data-theme='dark'] .leaflet-container {
+  background: var(--map-bg);
+}
+
+:root[data-theme='dark'] .leaflet-bar a,
+:root[data-theme='dark'] .leaflet-control-attribution {
+  background: var(--surface);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+:root[data-theme='dark'] .leaflet-control-scale-line {
+  background: rgb(22 28 38 / 80%);
+  color: var(--text-secondary);
+  border-color: var(--text-muted);
+}
+
+:root[data-theme='dark'] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+:root[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: #2f394b;
+  border-radius: 6px;
+}
+
+:root[data-theme='dark'] select option {
+  background: var(--surface);
+}
+
+@media print {
+  /* 打印始终为白纸：页边距区域取的是 html 背景，暗黑模式下也要强制为白色 */
+  html,
+  body,
+  #app {
+    background: #fff !important;
+    color-scheme: light;
+  }
+
+  :root[data-theme='dark'] {
+    --bg: #ffffff;
+    color-scheme: light !important;
+  }
+
+  @page {
+    background: #fff;
+  }
+}
+
+/* —— 地图脉冲高亮标记（AI 回答「在地图上标出」）：图钉落下弹跳 + 地面波纹扩散 —— */
+.hl-pulse {
+  background: none;
+  border: 0;
+  overflow: visible;
+}
+
+.hl-pulse-bmap {
+  position: relative;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.hl-origin {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.hl-ripple {
+  position: absolute;
+  left: -30px;
+  top: -13px;
+  width: 60px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid var(--hl-c);
+  background: color-mix(in srgb, var(--hl-c) 25%, transparent);
+  /* 内外白色描边：在蓝色等时圈、灰色盲区、暗色底图上都能看清 */
+  box-shadow:
+    0 0 0 2px rgb(255 255 255 / 85%),
+    inset 0 0 0 2px rgb(255 255 255 / 60%);
+  opacity: 0;
+  pointer-events: none;
+  animation: hl-ripple 1.6s ease-out infinite;
+}
+
+.hl-ripple-2 {
+  animation-delay: 0.8s;
+}
+
+.hl-pin {
+  position: absolute;
+  max-width: none;
+  transform-origin: 50% 100%;
+  animation:
+    hl-drop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) both,
+    hl-bounce 0.9s ease-in-out 0.5s 3;
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--hl-c) 70%, transparent));
+}
+
+@keyframes hl-ripple {
+  0% {
+    transform: scale(0.25);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes hl-drop {
+  0% {
+    transform: translateY(-36px) scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes hl-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  40% {
+    transform: translateY(-12px) scale(1.08);
+  }
+
+  70% {
+    transform: translateY(0) scaleX(1.06) scaleY(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hl-pin {
+    animation: none;
+  }
+
+  .hl-ripple {
+    animation: none;
+    opacity: 0.6;
+    transform: scale(0.9);
+  }
+
+  .hl-ripple-2 {
+    display: none;
+  }
+}

@@ -1,0 +1,12 @@
+node_modules
+web/dist
+data/cache
+data/analyses
+data/visitors
+.env
+.env.*
+!.env.example
+.git
+.github
+docs
+*.md

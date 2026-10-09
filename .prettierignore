@@ -1,0 +1,6 @@
+node_modules
+web/dist
+data
+docs/赛题.pdf
+package-lock.json
+*.md
