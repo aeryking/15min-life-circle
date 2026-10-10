@@ -41,6 +41,8 @@
 
 ### 方式一：Docker 一键部署（推荐，无需安装 Node.js）
 
+**前置要求**：[Docker Desktop](https://www.docker.com/products/docker-desktop/)（macOS / Windows）或 Docker Engine（Linux），Docker Compose ≥ 2.24。首次构建需要联网拉取基础镜像与 npm 依赖。
+
 ```bash
 git clone https://github.com/aeryking/15min-life-circle.git && cd 15min-life-circle
 docker compose up -d --build
@@ -51,7 +53,13 @@ docker compose up -d --build
 - 镜像约 170 MB，多阶段构建，以非 root 用户运行，内置健康检查；支持 x86_64 与 ARM64（含 Apple 芯片），构建时自动匹配本机架构。
 - 停止：`docker compose down`（体检记录保存在数据卷中，重启不丢失）。
 
-### 方式二：一键脚本（需要 Node.js ≥ 20.12）
+### 方式二：一键脚本（只需安装 Node.js）
+
+**前置要求**：只需 [Node.js](https://nodejs.org) ≥ 20.12（推荐 22 或 24 LTS），安装后自带 npm。
+
+- 不需要 Python、C/C++ 编译工具或数据库：运行时依赖只有 express 与 d3-contour 两个纯 JavaScript 包，数据以 JSON 文件保存在 `data/` 目录。
+- 首次运行需要联网，从 npm 安装约 240 个依赖包（约 200 MB）；之后再启动无需联网下载。国内网络较慢时，可先执行 `npm config set registry https://registry.npmmirror.com`。
+- 支持 macOS、Linux（`start.sh`）和 Windows（`start.bat`）。没有安装 Git 时，可在仓库页面点击 Code → Download ZIP 下载源码。
 
 ```bash
 git clone https://github.com/aeryking/15min-life-circle.git && cd 15min-life-circle
@@ -59,7 +67,7 @@ git clone https://github.com/aeryking/15min-life-circle.git && cd 15min-life-cir
 # 浏览器打开 http://localhost:8787
 ```
 
-脚本会自动生成 `.env`、安装依赖、构建前端并启动服务。
+脚本依次执行：检查 Node.js 版本 → 从 `.env.example` 生成 `.env`（已存在则跳过）→ 安装依赖（已安装则跳过）→ 构建前端 → 启动服务。从零开始约 30 秒。
 
 ### 方式三：npm
 
